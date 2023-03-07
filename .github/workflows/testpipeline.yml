@@ -42,7 +42,7 @@ jobs:
           pip install pytest
           pip install setuptools
           pwd
-          python setup.py bdist_wheel --universal
+          python setup.py
 
       - uses: actions/upload-artifact@v3
         with:
