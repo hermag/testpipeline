@@ -1,0 +1,23 @@
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+
+jobs:
+  testjob:
+    name: TestJob 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Test our shell script
+        run: | 
+          python pip install pandas
+          python pip install setuptools
