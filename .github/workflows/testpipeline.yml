@@ -1,27 +1,10 @@
 on:
-  workflow_dispatch:
-    inputs:
-      environment:
-        type: string
-        description: Select the environment
-        default: "test"
-      boolean:
-        type: boolean
-        description: with or without tests
-        default: true
-      SomeOption:
-        type: choice
-        description: Select Version
-        options:
-        - foo
-        - bar
-        - baz
   push:
     branches: [ main ]
 
 jobs:
-  testjob:
-    name: TestJob 
+  buildandpush:
+    name: BuildandPush
     runs-on: ubuntu-latest
 
     steps:
@@ -33,8 +16,9 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Test our shell script
+      - name: run unit tests
         run: |
-          echo "${{ github.event.inputs.SomeOption }} / ${{ inputs.SomeOption }}"
-          pip install pandas
+          pip install pytest
           pip install setuptools
+          cd EreklesPackage
+          pytest test.py
