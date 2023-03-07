@@ -3,7 +3,7 @@ on:
     branches: [ main ]
 
 jobs:
-  buildandpush:
+  UnitTests:
     name: BuildandPush
     runs-on: ubuntu-latest
 
@@ -22,3 +22,27 @@ jobs:
           pip install setuptools
           cd EreklesPackage
           pytest test.py
+
+  BuildPackage:
+    name: Build the Package
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: run unit tests
+        run: |
+          pip install pytest
+          pip install setuptools
+          python setup.py bdist_wheel
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: EreklesPackage-1.0-py2.py3-none-any.whl
+          path: EreklesPackage/dist/*
