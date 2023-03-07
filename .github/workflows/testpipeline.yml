@@ -2,15 +2,15 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        type: environment
+        type: string
         description: Select the environment
-        default: test
+        default: "test"
       boolean:
         type: boolean
         description: with or without tests
         default: true
       SomeOption:
-        type: choice
+        type: string
         description: Select Version
         options:
         - "1.1"
