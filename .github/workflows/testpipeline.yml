@@ -42,6 +42,7 @@ jobs:
           pip install pytest
           pip install setuptools
           pwd
+          ls -laF
           python setup.py
 
       - uses: actions/upload-artifact@v3
