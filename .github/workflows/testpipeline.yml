@@ -13,9 +13,9 @@ on:
         type: choice
         description: Select Version
         options:
-        - foo
-        - bar
-        - baz
+          - foo
+          - bar
+          - baz
   push:
     branches: [ main ]
   
@@ -37,6 +37,6 @@ jobs:
 
       - name: Test our shell script
         run: |
-          echo "${{ github.event.inputs.SomeOption }} / ${{ inputs.SomeOption }}"
+          echo "${{ inputs.SomeOption }}"
           pip install pandas
           pip install setuptools
