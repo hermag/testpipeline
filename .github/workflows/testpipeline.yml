@@ -1,7 +1,25 @@
 on:
   workflow_dispatch:
+    inputs:
+      environment:
+        type: environment
+        description: Select the environment
+        default: test
+      boolean:
+        type: boolean
+        description: with or without tests
+        default: true
+      SomeOption:
+        type: choice
+        description: Select Version
+        options:
+        - '1.1'
+        - '2.5'
+        - '3.7'
   push:
     branches: [ main ]
+  
+
 
 jobs:
   testjob:
