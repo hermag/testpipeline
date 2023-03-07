@@ -18,8 +18,6 @@ on:
         - baz
   push:
     branches: [ main ]
-  
-
 
 jobs:
   testjob:
