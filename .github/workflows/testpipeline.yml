@@ -10,12 +10,12 @@ on:
         description: with or without tests
         default: true
       SomeOption:
-        type: string
+        type: choice
         description: Select Version
         options:
-        - "1.1"
-        - "2.5"
-        - "3.7"
+        - foo
+        - bar
+        - baz
   push:
     branches: [ main ]
   
