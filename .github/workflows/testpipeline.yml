@@ -37,6 +37,6 @@ jobs:
 
       - name: Test our shell script
         run: |
-          echo ${{ inputs.SomeOption }}
+          echo "${{ github.event.inputs.SomeOption }}"
           pip install pandas
           pip install setuptools
