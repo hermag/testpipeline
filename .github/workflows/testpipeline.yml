@@ -36,6 +36,7 @@ jobs:
           python-version: '3.9'
 
       - name: Test our shell script
-        run: | 
+        run: |
+          echo ${{ inputs.SomeOption.options }}
           pip install pandas
           pip install setuptools
