@@ -19,5 +19,5 @@ jobs:
 
       - name: Test our shell script
         run: | 
-          python pip install pandas
-          python pip install setuptools
+          pip install pandas
+          pip install setuptools
