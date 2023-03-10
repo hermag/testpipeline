@@ -67,7 +67,7 @@ jobs:
         run: |
           cd ../
           pwd
-          ls EreklesPackage
+          ls  
           # cd EreklesPackage
           python setup.py bdist_wheel
 
