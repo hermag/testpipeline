@@ -67,8 +67,7 @@ jobs:
         run: |
           
           pwd
-          ls  
-          cd EreklesPackage
+          ls
           python setup.py bdist_wheel
 
       - uses: actions/upload-artifact@v3
