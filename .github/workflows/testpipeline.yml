@@ -65,7 +65,7 @@ jobs:
 
       - name: Build package
         run: |
-          cd ../
+          cd ../../
           pwd
           ls  
           # cd EreklesPackage
