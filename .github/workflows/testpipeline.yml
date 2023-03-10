@@ -60,6 +60,8 @@ jobs:
 
       - name: Install setuptools
         run: pip install setuptools
+      - name: Print current directory
+        run: pwd
 
       - name: Build package
         run: |
