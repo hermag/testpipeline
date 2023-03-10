@@ -1,4 +1,21 @@
 on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: string
+        description: Select the environment
+        default: "test"
+      boolean:
+        type: boolean
+        description: with or without tests
+        default: true
+      SomeOption:
+        type: choice
+        description: Select Version
+        options:
+        - foo
+        - bar
+        - baz
   push:
     branches: [ main ]
 
@@ -16,10 +33,11 @@ jobs:
         with:
           python-version: '3.9'
 
+      - name: Install pytest
+        run: pip install pytest
+
       - name: run unit tests
         run: |
-          pip install pytest
-          pip install setuptools
           cd EreklesPackage
           pytest test.py
 
@@ -37,13 +55,21 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: run unit tests
+      - name: Install pandas
+        run: pip install pandas
+
+        #intall wheel package on ubuntu-latest
+      - name: Install wheel
+        run: pip install wheel
+      - name: Install setuptools
+        run: pip install setuptools
+      - name: Print current directory
+        run: pwd
+      - name: RUN LS
+        run:  ls
+      - name: Build package
         run: |
-          pip install pytest
-          pip install setuptools
-          pwd
-          ls -laF
-          python setup.py
+          python setup.py bdist_wheel
 
       - uses: actions/upload-artifact@v3
         with:
