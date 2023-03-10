@@ -13,17 +13,15 @@ on:
         type: choice
         description: Select Version
         options:
-          - foo
-          - bar
-          - baz
+        - foo
+        - bar
+        - baz
   push:
     branches: [ main ]
-  
-
 
 jobs:
-  testjob:
-    name: TestJob 
+  UnitTests:
+    name: Run Tests
     runs-on: ubuntu-latest
 
     steps:
@@ -35,8 +33,38 @@ jobs:
         with:
           python-version: '3.9'
 
-      - name: Test our shell script
+      - name: run unit tests
         run: |
-          echo "${{ inputs.SomeOption }}"
+          pip install pytest
+          pip install setuptools
+          cd EreklesPackage
+          pytest test.py
+
+  BuildPackage:
+    name: Build the Package
+    runs-on: ubuntu-latest
+    needs: UnitTests
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: run unit tests
+        run: |
+          
           pip install pandas
           pip install setuptools
+
+          pwd
+          ls -laF
+          python setup.py
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: EreklesPackage-1.0-py2.py3-none-any.whl
+          path: EreklesPackage/dist/*
