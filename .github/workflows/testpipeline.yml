@@ -62,12 +62,11 @@ jobs:
         run: pip install setuptools
       - name: Print current directory
         run: pwd
-
+      - name: RUN LS
+        RUN:  ls
       - name: Build package
         run: |
-          
-          pwd
-          ls
+          cd EreklesPackage
           python setup.py bdist_wheel
 
       - uses: actions/upload-artifact@v3
