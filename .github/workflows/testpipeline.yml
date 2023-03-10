@@ -65,8 +65,6 @@ jobs:
 
       - name: Build package
         run: |
-          cd ../../
-          pwd
           ls  
           # cd EreklesPackage
           python setup.py bdist_wheel
