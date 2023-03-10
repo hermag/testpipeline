@@ -65,7 +65,7 @@ jobs:
 
       - name: Build package
         run: |
-          cd EreklesPackage
+          cd testpipeline/EreklesPackage
           python setup.py bdist_wheel
 
       - uses: actions/upload-artifact@v3
