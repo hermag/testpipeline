@@ -58,6 +58,9 @@ jobs:
       - name: Install pandas
         run: pip install pandas
 
+        #intall wheel package on ubuntu-latest
+      - name: Install wheel
+        run: pip install wheel
       - name: Install setuptools
         run: pip install setuptools
       - name: Print current directory
