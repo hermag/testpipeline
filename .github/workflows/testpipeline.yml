@@ -63,7 +63,7 @@ jobs:
       - name: Print current directory
         run: pwd
       - name: RUN LS
-        RUN:  ls
+        run:  ls
       - name: Build package
         run: |
           cd EreklesPackage
