@@ -38,7 +38,6 @@ jobs:
       - name: run unit tests
         run: |
           pip install pytest
-          pip install setuptools
           cd EreklesPackage
           pytest test.py
 
@@ -58,8 +57,7 @@ jobs:
 
       - name: run unit tests
         run: |
-          pip install pytest
-          pip install setuptools
+          pip install pytest setuptools wheel
           pwd
           ls -laF
           which python
