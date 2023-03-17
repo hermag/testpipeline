@@ -62,7 +62,8 @@ jobs:
           pip install setuptools
           pwd
           ls -laF
-          python setup.py bdist_wheel
+          which python
+          python ./setup.py bdist_wheel
 
       - uses: actions/upload-artifact@v3
         with:
