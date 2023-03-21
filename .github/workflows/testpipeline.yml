@@ -37,6 +37,7 @@ jobs:
 
       - name: run unit tests
         run: |
+          echo "${{ github.event_name }}"
           pip install pytest
           cd EreklesPackage
           pytest test.py
@@ -58,6 +59,7 @@ jobs:
 
       - name: build package
         run: |
+          echo "${{ github.event_name }}"
           pip install pytest setuptools wheel
           pwd
           ls -laF
