@@ -13,7 +13,7 @@ on:
       tags:
         description: 'Test scenario tags'
         required: true
-        default: false
+        default: true
         type: boolean
       # environment:
       #   description: 'Environment to run tests against'
@@ -38,12 +38,12 @@ jobs:
 
       - name: run unit tests
         run: |
-          if [ "${{ github.event_name }}" = "push" && ${{ inputs.tags }} -eq 1 ] ; then
+          if [ "${{ github.event_name }}" = "push" && ${{ inputs.tags }} -eq true ] ; then
             pip install pytest
             cd EreklesPackage
             pytest test.py
             echo "Here is the log level on Tests Step ${{ inputs.logLevel }}"
-          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" && ${{ inputs.tags }} -eq true ]; then
             echo "This pipeline is triggered "
           else
             echo "This is something else testing stage"
@@ -72,7 +72,7 @@ jobs:
             which python
             python ./setup.py bdist_wheel
             echo "Here is the log level on Build Step ${{ inputs.logLevel }}"
-          elif [ "${{ github.event_name }}" = "workflow_dispatch" && ${{ inputs.tags }} = true ]; then
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" && ${{ inputs.tags }} -eq true ]; then
             echo "This pipeline is triggered "
           else
             echo "This is something else build package stage"
