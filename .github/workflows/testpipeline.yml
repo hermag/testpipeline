@@ -32,13 +32,13 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.9'
 
       - name: run unit tests
         run: |
-          if [ "${{ github.event_name }}" = "push" && ${{ github.event.inputs.tags }} = true ]; then
+          if [ "${{ github.event_name }}" = "push" && ${{ inputs.tags }} = true ]; then
             pip install pytest
             cd EreklesPackage
             pytest test.py
@@ -59,7 +59,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.9'
 
@@ -72,7 +72,7 @@ jobs:
             which python
             python ./setup.py bdist_wheel
             echo "Here is the log level on Build Step ${{ inputs.logLevel }}"
-          elif [ "${{ github.event_name }}" = "workflow_dispatch" && ${{ github.event.inputs.tags }} = true ]; then
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" && ${{ inputs.tags }} = true ]; then
             echo "This pipeline is triggered "
           else
             echo "This is something else build package stage"
