@@ -72,7 +72,7 @@ jobs:
             which python
             python ./setup.py bdist_wheel
             echo "Here is the log level on Build Step ${{ inputs.logLevel }}"
-          elif [ "${{ github.event_name }}" == "workflow_dispatch" && ${{ github.event.inputs.tags }} == "true" ]; then
+          elif [ "${{ github.event_name }}" == "workflow_dispatch" && ${{ github.event.inputs.tags }} == true ]; then
             echo "This pipeline is triggered "
           else
             echo "This is something else"
