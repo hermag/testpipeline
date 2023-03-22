@@ -43,10 +43,10 @@ jobs:
             cd EreklesPackage
             pytest test.py
             echo "Here is the log level on Tests Step ${{ inputs.logLevel }}"
-          elif [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+          elif [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
             echo "This pipeline is triggered "
           else
-            echo "This is something else"
+            echo "This is something else testing stage"
           fi
 
   BuildPackage:
@@ -75,7 +75,7 @@ jobs:
           elif [ "${{ github.event_name }}" = "workflow_dispatch" && ${{ github.event.inputs.tags }} = true ]; then
             echo "This pipeline is triggered "
           else
-            echo "This is something else"
+            echo "This is something else build package stage"
           fi
 
 
