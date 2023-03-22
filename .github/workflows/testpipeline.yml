@@ -65,7 +65,7 @@ jobs:
 
       - name: build package
         run: |
-          if [ "${{ github.event_name }}" == "push" && ${{ github.event.inputs.tags }} = true ]; then
+          if [ "${{ github.event_name }}" == "push" && ${{ github.event.inputs.tags }} -eq true ]; then
             pip install pytest setuptools wheel
             pwd
             ls -laF
