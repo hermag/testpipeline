@@ -37,7 +37,7 @@ jobs:
 
       - name: run unit tests
         run: |
-          if [ "${{ github.event_name }}" == "push" ]; then
+          if [ "${{ github.event_name }}" == "push" && ${{ github.event.inputs.logLevel }} == "warning" ]; then
             pip install pytest
             cd EreklesPackage
             pytest test.py
@@ -64,7 +64,7 @@ jobs:
 
       - name: build package
         run: |
-          if [ "${{ github.event_name }}" == "push" ]; then
+          if [ "${{ github.event_name }}" == "push"  && ${{ github.event.inputs.logLevel }} == "debug" ]; then
             pip install pytest setuptools wheel
             pwd
             ls -laF
