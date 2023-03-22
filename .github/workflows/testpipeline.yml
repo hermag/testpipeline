@@ -38,7 +38,7 @@ jobs:
 
       - name: run unit tests
         run: |
-          if [ "${{ github.event_name }}" = "push" ] && $(${{ inputs.tags }}) ; then
+          if [ "${{ github.event_name }}" = "push" ] && $((${{ inputs.tags }})) ; then
             pip install pytest
             cd EreklesPackage
             pytest test.py
