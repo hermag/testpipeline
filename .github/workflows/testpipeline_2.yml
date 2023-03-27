@@ -1,0 +1,75 @@
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: true
+        default: true
+        type: boolean
+      # environment:
+      #   description: 'Environment to run tests against'
+      #   type: environment
+      #   required: true
+  push:
+    branches: [ main ]
+
+jobs:
+  UnitTests:
+    name: Run Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: run unit tests
+        if: github.event_name == 'push' && github.event.inputs.tags == 'true' 
+        run: |
+          pip install pytest
+          cd EreklesPackage
+          pytest test.py
+          echo "Here is the log level on Tests Step ${{ github.event.inputs.logLevel }}"
+          
+
+  BuildPackage:
+    name: Build the Package
+    runs-on: ubuntu-latest
+    needs: UnitTests
+
+    steps:
+      - name: Clone
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.9'
+
+      - name: build package
+        if: github.event_name  == 'push' && github.event.inputs.tags == 'true'
+        run: |
+          pip install pytest setuptools wheel
+          pwd
+          ls -laF
+          which python
+          python ./setup.py bdist_wheel
+          echo "Here is the log level on Build Step ${{ github.event.inputs.logLevel }}"
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: EreklesPackage-1.0-py2.py3-none-any.whl
+          path: EreklesPackage/dist/*
