@@ -37,7 +37,7 @@ jobs:
           python-version: '3.9'
 
       - name: run unit tests
-        if: github.event_name == 'push' && github.event.inputs.tags == 'true' 
+        if: github.event_name == 'push' && inputs.tags == 'true' 
         run: |
           pip install pytest
           cd EreklesPackage
@@ -60,7 +60,7 @@ jobs:
           python-version: '3.9'
 
       - name: build package
-        if: github.event_name  == 'push' && github.event.inputs.tags == 'true'
+        if: github.event_name  == 'push' && inputs.tags == 'true'
         run: |
           pip install pytest setuptools wheel
           pwd
